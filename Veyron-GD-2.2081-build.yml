@@ -1,0 +1,51 @@
+name: Build Veyron Proyect (GD 2.2081)
+
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    name: Build Geode mod (Windows / GD 2.2081)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Check target versions
+        shell: pwsh
+        run: |
+          $mod = Get-Content -Raw -Path "mod.json" | ConvertFrom-Json
+
+          if ($mod.gd.win -ne "2.2081") {
+            throw "Wrong Geometry Dash target. Expected 2.2081, found $($mod.gd.win)."
+          }
+
+          if ($mod.geode -ne "v5.11.2") {
+            throw "Wrong Geode SDK target. Expected v5.11.2, found $($mod.geode)."
+          }
+
+          Write-Host "Target verified: Geometry Dash $($mod.gd.win) / Geode $($mod.geode)"
+
+      - name: Build .geode package
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          # 'given' reads the exact SDK version from mod.json.
+          sdk: given
+          target: Win64
+          build-config: Release
+
+      - name: Upload .geode package
+        uses: actions/upload-artifact@v7
+        with:
+          name: Veyron-Proyect-GD-2.2081-Windows
+          path: ${{ steps.build.outputs.build-output }}
+          if-no-files-found: error
+          retention-days: 14
