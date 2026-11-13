@@ -1,0 +1,5 @@
+The original GitHub repository tree listed logo.png and reference-window-chart.png.
+Neither file was included in the uploaded Veyron-Proyect-Windows (1).zip; that file
+contained only alan.veyron-proyect.geode. The binary PNG bytes could not be recovered
+through the available repository file retrieval path during this packaging operation.
+No replacement images have been misrepresented as the originals.

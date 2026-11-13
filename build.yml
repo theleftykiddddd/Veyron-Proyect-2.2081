@@ -1,0 +1,49 @@
+name: Build Veyron Proyect (GD 2.2081)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-core:
+    name: Test platform-neutral core
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Configure core tests
+        run: cmake -S . -B build-core -DVEYRON_STANDALONE_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build core tests
+        run: cmake --build build-core --parallel
+
+      - name: Run core tests
+        run: ctest --test-dir build-core --output-on-failure
+
+  build-windows:
+    name: Build Geode mod (Windows / GD 2.2081)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Build .geode package
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          sdk: v5.11.2
+          target: Win64
+          cli: latest
+
+      - name: Upload .geode file
+        uses: actions/upload-artifact@v7
+        with:
+          name: Veyron-Proyect-GD-2.2081-Windows
+          path: ${{ steps.build.outputs.build-output }}
+          if-no-files-found: error
+          retention-days: 14

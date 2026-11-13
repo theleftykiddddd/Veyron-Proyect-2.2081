@@ -1,0 +1,21 @@
+VEYRON PROYECT - BUILD PARA GEOMETRY DASH 2.2081
+
+OBJETIVO DE ESTA VERSION
+- Geometry Dash Windows: 2.2081
+- Geode SDK / loader: v5.11.2
+- Plataforma: Win64
+
+COMPILAR EN GITHUB ACTIONS
+1. Crea un repositorio en GitHub.
+2. Sube TODO el contenido de esta carpeta a la raiz del repositorio.
+3. Abre la pestaña Actions.
+4. Ejecuta "Build Veyron Proyect (GD 2.2081)" o haz push a main.
+5. Espera a que terminen los trabajos "Test platform-neutral core" y "Build Geode mod (Windows / GD 2.2081)".
+6. Abre la ejecucion correcta y descarga el artefacto "Veyron-Proyect-GD-2.2081-Windows".
+7. Dentro del artefacto estara el paquete .geode si la compilacion de Windows termino correctamente.
+
+IMPORTANTE
+- No cambies solamente mod.json: el workflow tambien debe compilar con Geode v5.11.2.
+- No uses Geode v6.0.0-alpha.1 para esta configuracion de GD 2.2081.
+- Este ZIP contiene el codigo fuente, no un .geode ya compilado.
+- Los hooks de entrada, la reproduccion dentro del juego, el HUD, el audio y los adaptadores de formatos externos siguen pendientes. Consulta docs/IMPLEMENTATION_STATUS.md.

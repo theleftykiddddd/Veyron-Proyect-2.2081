@@ -1,0 +1,11 @@
+{
+  "geode": "5.11.2",
+  "gd": {
+    "win": "2.2081"
+  },
+  "id": "alan.veyron-proyect",
+  "name": "Veyron Proyect",
+  "version": "v0.1.1",
+  "developer": "Alan",
+  "description": "Frame-based macro recording architecture and input-window analysis tools for Geometry Dash."
+}

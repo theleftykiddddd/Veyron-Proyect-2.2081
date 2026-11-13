@@ -1,0 +1,11 @@
+VEYRON PROYECT - GD 2.2081 ADAPTED SOURCE PACKAGE
+
+This package combines:
+- the previously adapted, reorganized source tree (src/, include/, docs/, config/, examples/, tests/)
+- the original repository's root-level source-file layout and duplicate helper files
+- original root-level docs, workflow file, defaults, and JSON examples
+- the GD 2.2081 / Geode 5.11.2 metadata and CI configuration
+
+The original repository also contained logo.png and reference-window-chart.png. Those two binary image files were not present in the user-uploaded Windows artifact (that ZIP contains only alan.veyron-proyect.geode), and the repository connector did not provide their raw bytes in a form that could be packaged. They are therefore not included in this archive. The reference distribution data itself is included as JSON in both root and examples/.
+
+The old 2.2091 metadata snapshot is preserved in original-repository/ for reference only; do not use it for the 2.2081 build.
