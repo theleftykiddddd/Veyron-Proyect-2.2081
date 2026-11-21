@@ -1,7 +1,7 @@
 
 name: Build Veyron Proyect (GD 2.2081)
 
-"on":
+on:
   push:
     branches:
       - main
@@ -28,11 +28,13 @@ jobs:
             throw "Wrong Geometry Dash target. Expected 2.2081, found $($mod.gd.win)."
           }
 
-          if ($mod.geode -ne "v5.11.2") {
-            throw "Wrong Geode SDK target. Expected v5.11.2, found $($mod.geode)."
+          $geodeVersion = "$($mod.geode)".TrimStart('v')
+
+          if ($geodeVersion -ne "5.11.2") {
+            throw "Wrong Geode SDK target. Expected 5.11.2, found $($mod.geode)."
           }
 
-          Write-Host "Target verified: Geometry Dash $($mod.gd.win) / Geode $($mod.geode)"
+          Write-Host "Target verified: Geometry Dash $($mod.gd.win) / Geode $geodeVersion"
 
       - name: Build .geode package
         id: build
@@ -49,3 +51,4 @@ jobs:
           path: ${{ steps.build.outputs.build-output }}
           if-no-files-found: error
           retention-days: 14
+
